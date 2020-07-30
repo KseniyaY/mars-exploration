@@ -6,12 +6,12 @@
   "scripts": {
     "test": "karma start",
     "build": "webpack --config webpack.config.js",
-    "start": "nodemon src/app/server.js"
+    "start": "nodemon --exec babel-node src/app/server.js"
   },
   "author": "Oksana Yarosh",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@babel/register": "^7.10.5",
     "babel-loader": "^8.1.0",

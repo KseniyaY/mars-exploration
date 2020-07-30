@@ -12,13 +12,15 @@ export class Rover {
         this.navigation = instructions;
     }
 
-    launch() {
+    launch(dimensions) {
         for (let i = 0; i < this.navigation.length; i++) {
             let instruction = this.navigation[i];
             if (instruction === "M") {
-                this.move(instruction);
+                this.move(instruction, dimensions);
             } else if (instruction === "L" || instruction === "R") {
                 this.turn(instruction);
+            } else {
+                console.log("Staying where I am. There is no way further");
             }
         }
         //log the rover's final destination based on fulfilled instructions
@@ -27,8 +29,7 @@ export class Rover {
 
     }
 
-    move(instruction) {
-        //TODO: check and prevent moves beyond the plateau bondaries
+    move(instruction, dimensions) {
         if (instruction !== "M") {
             console.log("Unknown instruction");
             return;
@@ -37,18 +38,19 @@ export class Rover {
         let coordY = this.position[1];
 
         //change rover coordinates depending on the cardinal compass point it is curently facing
+        //prevent move if the rover next step is beyond the boundaries
         switch (this.direction) {
             case "N":
-                coordY++;
+                this.isWithinGrid(coordX, coordY + 1, dimensions) && coordY++;
                 break;
             case "S":
-                coordY--;
+                this.isWithinGrid(coordX, coordY - 1, dimensions) && coordY--;
                 break;
             case "E":
-                coordX++;
+                this.isWithinGrid(coordX + 1, coordY, dimensions) && coordX++;
                 break;
             case "W":
-                coordX--;
+                this.isWithinGrid(coordX - 1, coordY, dimensions) && coordX--;
                 break;
         }
 
@@ -64,5 +66,13 @@ export class Rover {
             compassPointer = (compassPointer + 1) % 4;
         }
         this.direction = this.directions[compassPointer];
+    }
+
+    isWithinGrid(coordX, coordY, dimensions) {
+        return coordX <= dimensions[2] &&
+            coordX >= dimensions[0] &&
+            coordY <= dimensions[3] &&
+            coordY >= dimensions[1];
+
     }
 }

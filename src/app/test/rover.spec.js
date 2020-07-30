@@ -63,13 +63,13 @@ describe("Given the navigation instructions for the current rover, the rover", (
         let rover = new Rover(3, 2, "W")
         rover.turn("R");
         rover.turn("R");
-        console.log(rover);
         expect(rover.direction).toEqual("E");
     })
 
     it("should move forward", () => {
         let rover = new Rover(2, 2, "N");
-        rover.move("M");
+        let dimensions = [0, 0, 5, 5];
+        rover.move("M", dimensions);
         expect(rover.position).toEqual([2, 3]);
     })
 })
@@ -79,17 +79,28 @@ describe(`Given the initial instructions on the rover deployment coordinates,
     it(`should launch at 12N and successfully finish its mission,
          informing about his final coordinates at 13N`, () => {
         let rover = new Rover(1, 2, "N");
+        let dimensions = [0, 0, 5, 5];
         rover.setNavigation("LMLMLMLMM");
-        rover.launch();
+        rover.launch(dimensions);
         expect(rover.finalDestination).toEqual("13N");
     })
 
     it(`should launch at 33E and successfully finish its mission,
          informing about his final coordinates at 51E`, () => {
         let rover = new Rover(3, 3, "E");
+        let dimensions = [0, 0, 5, 5];
         rover.setNavigation("MMRMMRMRRM");
-        rover.launch();
+        rover.launch(dimensions);
         expect(rover.finalDestination).toEqual("51E");
+    })
+
+    it(`should stay at 55N if there is no way to go further because of
+         the limited grid`, () => {
+        let rover = new Rover(5, 5, "N");
+        let dimensions = [0, 0, 5, 5];
+        rover.setNavigation("M");
+        rover.launch(dimensions);
+        expect(rover.finalDestination).toEqual("55N");
     })
 
 })

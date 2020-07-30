@@ -35,4 +35,6 @@ const app = (nasaFile) => {
     plateau.explore();
 }
 
+//TODO: to sort out with requireJS, es6 imports and exports through the entire app
+//so that they look similar and work completely ok with @babel/node
 module.exports = app;

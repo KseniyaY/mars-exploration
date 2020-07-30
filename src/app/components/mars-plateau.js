@@ -1,7 +1,7 @@
 export class MarsPlateau {
 
     constructor(X, Y) {
-        this.dimensions = [X, Y];
+        this.dimensions = [0, 0, X, Y];
         this.rovers = [];
     }
 
@@ -11,7 +11,7 @@ export class MarsPlateau {
 
     explore() {
         this.rovers.forEach((rover) => {
-            rover.launch();
+            rover.launch(this.dimensions);
         })
     }
 }
