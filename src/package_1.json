@@ -1,0 +1,27 @@
+{
+  "name": "mars-exploration",
+  "version": "1.0.0",
+  "description": "mars rovers JS solution",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start",
+    "build": "webpack --config webpack.config.js",
+    "start": "node start.js nasa-command.txt"
+  },
+  "author": "Oksana Yarosh",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "babel-loader": "^8.1.0",
+    "jasmine": "^3.6.1",
+    "karma": "^5.1.1",
+    "karma-babel-preprocessor": "^8.0.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.3.1",
+    "karma-requirejs": "^1.1.0",
+    "webpack": "^4.44.0",
+    "requirejs": "^2.3.6"
+  }
+}
