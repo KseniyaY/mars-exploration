@@ -24,7 +24,7 @@ Check your terminal for an expected output.
 
 `npm run test` to initiate tests.
 
-##Simple UI
+## Simple UI
 
 Mars Exploration "main" page:
 
